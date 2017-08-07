@@ -55,7 +55,7 @@ function newGame() {
 		setGameElements();
 
 	playerNameElem.innerHTML = player.name;	
-	setGamePoints();
+	
 	}
 }
 
@@ -104,18 +104,35 @@ function checkRoundWinner(playerPick, computerPick) {
 	if(winnerIs == 'player') {
 		playerResultElem.innerHTML = "Win!";
 		player.score++;
+		setGamePoints();
 
 	}	else if(winnerIs == 'computer') {
 		computerResultElem.innerHTML = "Win!";
 		computer.score++;
+		setGamePoints();
 	}
+		endGame();
 }
+
 
 function setGamePoints() {
 	playerPointsElem.innerHTML = player.score;
 	computerPointsElem.innerHTML = computer.score;
 }
+function endGame() {
+	if(player.score == 10) {
+		playerResultElem.innerHTML = "Wygrales 10 razy";
+		player.score = 0;
+		gameState = 'ended';
+		setGameElements();
+	}	else if(computer.score == 10) {
+		computerResultElem.innerHTML = "Komputer wygral 10 razy";	
+		computer.score = 0;	
+		gameState = 'ended';
+		setGameElements();
+	}
 
+}
 
 
 
